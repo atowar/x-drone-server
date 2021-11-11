@@ -1,0 +1,50 @@
+[debug] [2021-10-29T18:02:24.464Z] ----------------------------------------------------------------------
+[debug] [2021-10-29T18:02:24.466Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-10-29T18:02:24.466Z] CLI Version:   9.21.0
+[debug] [2021-10-29T18:02:24.466Z] Platform:      win32
+[debug] [2021-10-29T18:02:24.467Z] Node Version:  v14.17.3
+[debug] [2021-10-29T18:02:24.467Z] Time:          Sat Oct 30 2021 00:02:24 GMT+0600 (Bangladesh Standard Time)
+[debug] [2021-10-29T18:02:24.467Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-29T18:02:24.473Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-29T18:02:24.473Z] > authorizing via signed-in user (rseverity@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\projects\beachfront-server
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[debug] [2021-10-29T18:05:46.176Z] ----------------------------------------------------------------------
+[debug] [2021-10-29T18:05:46.178Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-10-29T18:05:46.178Z] CLI Version:   9.21.0
+[debug] [2021-10-29T18:05:46.178Z] Platform:      win32
+[debug] [2021-10-29T18:05:46.178Z] Node Version:  v14.17.3
+[debug] [2021-10-29T18:05:46.179Z] Time:          Sat Oct 30 2021 00:05:46 GMT+0600 (Bangladesh Standard Time)
+[debug] [2021-10-29T18:05:46.179Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-29T18:05:46.186Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-29T18:05:46.187Z] > authorizing via signed-in user (rseverity@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\projects\beachfront-server
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
