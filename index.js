@@ -34,8 +34,8 @@ async function run () {
 
         app.get('/ordered-products', async(req, res) => {
             const cursor = orderCollection.find({});
-            const bookedServices = await cursor.toArray();
-            res.send(bookedServices)
+            const orderedProducts = await cursor.toArray();
+            res.send(orderedProducts)
         });
         //get contacts info API
         app.get('/contact-details', async(req, res) => {
@@ -47,15 +47,15 @@ async function run () {
         app.get('/products/:id', async(req, res) => {
             const id = req.params.id;
             const query = {_id: ObjectId(id)}
-            const service = await productCollection.findOne(query)
-            res.json(service)
+            const product = await productCollection.findOne(query)
+            res.json(product)
         });
 
         //add order API
 
         app.post('/order', async(req, res) => {
-            const booking = req.body;
-            const result = await orderCollection.insertOne(booking);
+            const order = req.body;
+            const result = await orderCollection.insertOne(order);
             res.json(result)
         });
         //add contact info API
@@ -68,8 +68,8 @@ async function run () {
         //add new product
 
         app.post('/products', async(req, res) => {
-            const addedServices = req.body;
-            const result = await productCollection.insertOne(addedServices);
+            const addedProducts = req.body;
+            const result = await productCollection.insertOne(addedProducts);
             res.json(result)
         });
         //DELETE Order
@@ -77,7 +77,7 @@ async function run () {
             const id = req.params.id;
             const query = {_id: ObjectId(id) };
             const result = await orderCollection.deleteOne(query)
-            console.log('deleting services by id', result );
+            console.log('deleting products by id', result );
             res.json(result)
         }),
        //Update Order
