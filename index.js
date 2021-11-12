@@ -75,13 +75,31 @@ async function run() {
             const result = await productCollection.insertOne(addedProducts);
             res.json(result)
         });
-        // save user 
+       
+
+        // check admin or not 
+
+        app.get('/users/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = {email: email};
+            const user = await userCollection.findOne(query);
+            let isAdmin = false;
+            if (user?.role==='admin'){
+                isAdmin = true;
+            }
+            res.json({admin: isAdmin});
+        })
+
+        // insert new user to database 
 
         app.post('/users', async (req, res) => {
             const user = req.body;
             const result = await userCollection.insertOne(user);
             res.json(result)
         })
+
+
+        //insert or update google user in to database
         app.put('/users', async (req, res) => {
             const user = req.body;
             const filter = { email: user.email };
@@ -93,11 +111,11 @@ async function run() {
 
         app.put('/users/admin', async (req, res) => {
             const user = req.body;
-            const filter = {email: user.email};
-            const updateDoc = {$set: {role: 'admin'}};
+            const filter = { email: user.email };
+            const updateDoc = { $set: { role: 'admin' } };
             const result = await userCollection.updateOne(filter, updateDoc);
             res.json(result)
-        } )
+        })
 
         //DELETE Order
         app.delete('/products/:id', async (req, res) => {
