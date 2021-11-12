@@ -1,5 +1,5 @@
 const express = require('express');
-const {MongoClient} = require('mongodb');
+const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const cors = require('cors');
 const ObjectId = require('mongodb').ObjectId;
@@ -14,8 +14,8 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 console.log(uri);
-async function run () {
-    try{
+async function run() {
+    try {
         //database connection
         await client.connect();
         const database = client.db('xdrone');
@@ -28,90 +28,96 @@ async function run () {
 
         //get products API
 
-        app.get('/products', async(req, res) => {
+        app.get('/products', async (req, res) => {
             const cursor = productCollection.find({});
             const products = await cursor.toArray();
             res.send(products)
         });
         //get ordered products API
 
-        app.get('/ordered-products', async(req, res) => {
+        app.get('/ordered-products', async (req, res) => {
             const cursor = orderCollection.find({});
             const orderedProducts = await cursor.toArray();
             res.send(orderedProducts)
         });
         //get contacts info API
-        app.get('/contact-details', async(req, res) => {
+        app.get('/contact-details', async (req, res) => {
             const cursor = contactCollection.find({});
             const contactInfo = await cursor.toArray();
             res.send(contactInfo)
         });
         //get single product API
-        app.get('/products/:id', async(req, res) => {
+        app.get('/products/:id', async (req, res) => {
             const id = req.params.id;
-            const query = {_id: ObjectId(id)}
+            const query = { _id: ObjectId(id) }
             const product = await productCollection.findOne(query)
             res.json(product)
         });
 
         //add order API
 
-        app.post('/order', async(req, res) => {
+        app.post('/order', async (req, res) => {
             const order = req.body;
             const result = await orderCollection.insertOne(order);
             res.json(result)
         });
         //add contact info API
 
-        app.post('/contacts-info', async(req, res) => {
+        app.post('/contacts-info', async (req, res) => {
             const contactsInfo = req.body;
             const result = await contactCollection.insertOne(contactsInfo);
             res.json(result)
         });
         //add new product
 
-        app.post('/products', async(req, res) => {
+        app.post('/products', async (req, res) => {
             const addedProducts = req.body;
             const result = await productCollection.insertOne(addedProducts);
             res.json(result)
         });
         // save user 
 
-        app.post('/users', async(req, res) => {
+        app.post('/users', async (req, res) => {
             const user = req.body;
             const result = await userCollection.insertOne(user);
-            console.log(result);
             res.json(result)
         })
-        app.put('/users', async(req, res) => {
+        app.put('/users', async (req, res) => {
             const user = req.body;
-            console.log('put', user);
-            const filter ={email: user.email};
-            const options = {upsert: true};
-            const updateDoc ={$set: user};
+            const filter = { email: user.email };
+            const options = { upsert: true };
+            const updateDoc = { $set: user };
             const result = await userCollection.updateOne(filter, updateDoc, options)
             res.json(result)
         })
-    
+
+        app.put('/users/admin', async (req, res) => {
+            const user = req.body;
+            const filter = {email: user.email};
+            const updateDoc = {$set: {role: 'admin'}};
+            const result = await userCollection.updateOne(filter, updateDoc);
+            res.json(result)
+        } )
+
         //DELETE Order
-        app.delete('/products/:id', async(req, res) => {
+        app.delete('/products/:id', async (req, res) => {
             const id = req.params.id;
-            const query = {_id: ObjectId(id) };
+            const query = { _id: ObjectId(id) };
             const result = await orderCollection.deleteOne(query)
-            console.log('deleting products by id', result );
+            console.log('deleting products by id', result);
             res.json(result)
         }),
-       //Update Order
-           app.patch('/products/:id', async(req, res) => {
-            const id = req.params.id;
-            const data = req.body;
-            const result = await orderCollection.updateOne(
-                {"_id": ObjectId(id)},
-                  {$set: data}                
+            //Update Order
+            app.patch('/products/:id', async (req, res) => {
+                const id = req.params.id;
+                const data = req.body;
+                const result = await orderCollection.updateOne(
+                    { "_id": ObjectId(id) },
+                    { $set: data }
                 )
-            
-            res.json(result)
-        })
+
+                res.json(result)
+            })
     }
     finally {
         // await client.close()
@@ -124,7 +130,7 @@ app.get('/', (req, res) => {
     res.send('X-Drone server running')
 })
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log('PORT: ', port);
 })
 
