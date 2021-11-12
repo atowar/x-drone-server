@@ -22,7 +22,7 @@ async function run () {
         const productCollection = database.collection('products');
         const orderCollection = database.collection('order');
         const contactCollection = database.collection('contactinfo');
-        const userCollection = database.collection('users')
+        const userCollection = database.collection('users');
 
 
 
@@ -75,12 +75,23 @@ async function run () {
             const result = await productCollection.insertOne(addedProducts);
             res.json(result)
         });
+        // save user 
+
         app.post('/users', async(req, res) => {
             const user = req.body;
             const result = await userCollection.insertOne(user);
             console.log(result);
             res.json(result)
-        });
+        })
+        app.put('/users', async(req, res) => {
+            const user = req.body;
+            const filter ={email: user.email};
+            const options = {upsrt: true};
+            const updateDoc ={$set: user};
+            const result = userCollection.updateOne(filter, updateDoc, options)
+            res.json(result)
+        })
+    
         //DELETE Order
         app.delete('/products/:id', async(req, res) => {
             const id = req.params.id;
