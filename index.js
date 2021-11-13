@@ -55,6 +55,14 @@ async function run() {
             res.json(product)
         });
 
+         //get review
+
+         app.get('/review', async (req, res) => {
+            const cursor = reviewCollection.find({});
+            const reviews = await cursor.toArray();
+            res.send(reviews)
+        });
+
         //add order API
 
         app.post('/order', async (req, res) => {
