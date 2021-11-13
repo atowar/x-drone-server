@@ -139,14 +139,13 @@ async function run() {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await orderCollection.deleteOne(query)
-            console.log('deleting products by id', result);
             res.json(result)
         }),
         //DELETE Products
         app.delete('/products/:id', async (req, res) => {
             const id = req.params.id;
-            const query = { _id: ObjectId(id) };
-            const result = await productCollection.deleteOne(query)
+            const filter = { _id: ObjectId(id) };
+            const result = await productCollection.deleteOne(filter)
             res.json(result)
         }),
             //Update Order
