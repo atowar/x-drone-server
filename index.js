@@ -146,6 +146,7 @@ async function run() {
             const id = req.params.id;
             const filter = { _id: ObjectId(id) };
             const result = await productCollection.deleteOne(filter)
+            console.log(result);
             res.json(result)
         }),
             //Update Order
