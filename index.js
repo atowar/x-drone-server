@@ -142,6 +142,13 @@ async function run() {
             console.log('deleting products by id', result);
             res.json(result)
         }),
+        //DELETE Products
+        app.delete('/products/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await productCollection.deleteOne(query)
+            res.json(result)
+        }),
             //Update Order
             app.patch('/products/:id', async (req, res) => {
                 const id = req.params.id;
