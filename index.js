@@ -23,6 +23,7 @@ async function run() {
         const orderCollection = database.collection('order');
         const contactCollection = database.collection('contactinfo');
         const userCollection = database.collection('users');
+        const reviewCollection = database.collection('reviews');
 
 
 
@@ -68,6 +69,14 @@ async function run() {
             const result = await contactCollection.insertOne(contactsInfo);
             res.json(result)
         });
+        //add review
+
+        app.post('/review', async (req, res) => {
+            const review = req.body;
+            const result = await reviewCollection.insertOne(review);
+            res.json(result)
+        });
+        
         //add new product
 
         app.post('/products', async (req, res) => {
